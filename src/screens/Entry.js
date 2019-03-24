@@ -11,7 +11,10 @@ class Entry extends PureComponent {
       <View style={styles.root}>
         <View style={styles.welcomeWrapper}>
           <Image source={require("../img/home_logo.jpg")} style={styles.logo} />
-          <Text style={styles.welcomeText}>Welcome to The Expanse App Experience</Text>
+          <Text style={styles.welcomeText}>
+            Welcome to The Expanse App Experience
+          </Text>
+          <RoundedButton text="Continue with Facebook" color={colors.aqua} />
         </View>
       </View>
     );
