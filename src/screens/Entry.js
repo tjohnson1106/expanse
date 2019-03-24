@@ -54,6 +54,18 @@ class Entry extends Component {
             <TouchableHighlight style={styles.linkButton}>
               <Text style={styles.termsText}>Terms of Service</Text>
             </TouchableHighlight>
+            <Text style={styles.termsText}>, </Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Payments Terms of Service</Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>, </Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Privacy Policy </Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>, </Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Nondiscrimination policy.</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -106,7 +118,7 @@ const styles = StyleSheet.create({
   },
   termsText: {
     color: colors.white,
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "600"
   },
   linkButton: {
