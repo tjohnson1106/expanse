@@ -1,17 +1,21 @@
-import React, { PureComponent } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import React, { Component } from "react";
+import { View, Text, StyleSheet, Image, TouchableHighlight } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../util/styles/colors";
 import RoundedButton from "../components/ui-elements/buttons/RoundedButton";
 
-class Entry extends PureComponent {
+class Entry extends Component {
   onFaceBookPress() {
     alert("Facebook button pressed");
   }
 
   onCreateAccountPress() {
     alert("Create account button pressed");
+  }
+
+  onMoreOptionsPress() {
+    alert("More options button pressed");
   }
 
   render() {
@@ -31,8 +35,26 @@ class Entry extends PureComponent {
           <RoundedButton
             text="Create Account"
             textColor={colors.white}
-            handleOnPress={this.createAccountPress}
+            handleOnPress={() => this.onCreateAccountPress}
           />
+
+          <TouchableHighlight
+            style={styles.moreOptionsButton}
+            onPress={() => this.onMoreOptionsPress}
+          >
+            <Text style={styles.moreOptionsButtonText}>More Options</Text>
+          </TouchableHighlight>
+
+          <View style={styles.terms}>
+            <Text style={styles.termsText}>
+              By Tapping Continue, Create Account or More{" "}
+            </Text>
+            <Text style={styles.termsText}>options, </Text>
+            <Text style={styles.termsText}>I agree to Expanse's </Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Terms of Service</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
@@ -68,6 +90,28 @@ const styles = StyleSheet.create({
     position: "relative",
     left: 20,
     zIndex: 8
+  },
+  moreOptionsButton: {
+    marginTop: 15
+  },
+  moreOptionsButtonText: {
+    color: colors.white,
+    fontSize: 16
+  },
+  terms: {
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flexDirection: "row",
+    marginTop: 30
+  },
+  termsText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "600"
+  },
+  linkButton: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.white
   }
 });
 
