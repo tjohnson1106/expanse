@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 
+import InputField from "../components/ui-elements/forms/InputField";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
@@ -12,6 +13,11 @@ class Login extends Component {
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scroll}>
             <Text style={styles.loginHeader}>Log In</Text>
+            <InputField
+              labelText="EMAIL ADDRESS"
+              labelTextSize={14}
+              labelColor={colors.white}
+            />
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
