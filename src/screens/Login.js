@@ -27,7 +27,7 @@ class Login extends Component {
               customStyles={{ marginBottom: 30 }}
             />
             <InputField
-              labelText="Password"
+              labelText="PASSWORD"
               labelTextSize={14}
               labelColor={colors.white}
               textColor={colors.white}
@@ -36,13 +36,9 @@ class Login extends Component {
               customStyles={{ marginBottom: 30 }}
             />
           </ScrollView>
-
-          <View>
-            <NextArrowButton
-              style={styles.nextButton}
-              handleNextButton={this._handleNextButton}
-            />
-          </View>
+        </View>
+        <View style={styles.nextButtonWrapper}>
+          <NextArrowButton handleNextButton={this._handleNextButton} />
         </View>
       </KeyboardAvoidingView>
     );
@@ -71,10 +67,10 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     marginBottom: 40
   },
-  nextButton: {
+  nextButtonWrapper: {
     alignItems: "flex-end",
     right: 20,
-    bottom: 0
+    bottom: 10
   }
 });
 
