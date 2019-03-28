@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-native";
-import PropTypes from "prop-types";
 
 import InputField from "../components/ui-elements/forms/InputField";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
+  _handleNextButton() {
+    alert("handle next button");
+  }
+
   state = {};
   render() {
     return (
@@ -17,8 +20,25 @@ class Login extends Component {
               labelText="EMAIL ADDRESS"
               labelTextSize={14}
               labelColor={colors.white}
+              textColor={colors.white}
+              borderBottomColor={colors.white}
+              inputType="email"
+              customStyles={{ marginBottom: 30 }}
+            />
+            <InputField
+              labelText="Password"
+              labelTextSize={14}
+              labelColor={colors.white}
+              textColor={colors.white}
+              borderBottomColor={colors.white}
+              inputType="password"
+              customStyles={{ marginBottom: 30 }}
             />
           </ScrollView>
+
+          <View>
+            <NextArrowButton handleNextButton={this._handleNextButton} />
+          </View>
         </View>
       </KeyboardAvoidingView>
     );

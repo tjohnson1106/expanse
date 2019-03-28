@@ -6,12 +6,29 @@ import colors from "../../../util/styles/colors";
 
 class InputField extends Component {
   render() {
-    const { labelText, labelTextSize, labelColor } = this.props;
+    const {
+      labelText,
+      labelTextSize,
+      labelColor,
+      textColor,
+      borderBottomColor,
+      inputType,
+      customStyle
+    } = this.props;
+
     const fontSize = labelTextSize || 14;
     const color = labelColor || colors.white;
+    const inputColor = textColor || colors.white;
+    const borderBottom = borderBottomColor || "transparent";
+
     return (
-      <View style={styles.root}>
+      <View style={[customStyle, styles.root]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
+        <TextInput
+          autoCorrect={false}
+          style={[{ color: inputColor, borderBottomColor: borderBottom }, styles.input]}
+          secureTextEntry={inputType === "password"}
+        />
       </View>
     );
   }
@@ -19,8 +36,12 @@ class InputField extends Component {
 
 InputField.propTypes = {
   labelText: PropTypes.string.isRequired,
-  labelText: PropTypes.number,
-  labelColor: PropTypes.string
+  labelTextSize: PropTypes.number,
+  labelColor: PropTypes.string,
+  textColor: PropTypes.string,
+  borderBottomColor: PropTypes.string,
+  inputType: PropTypes.string.isRequired,
+  customStyle: PropTypes.object
 };
 
 const styles = StyleSheet.create({
@@ -30,6 +51,11 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: "700",
     marginBottom: 10
+  },
+  input: {
+    borderBottomWidth: 1,
+    paddingTop: 5,
+    paddingBottom: 5
   }
 });
 
