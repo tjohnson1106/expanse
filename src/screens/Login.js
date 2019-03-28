@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-native";
 
 import InputField from "../components/ui-elements/forms/InputField";
+import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
@@ -37,7 +38,10 @@ class Login extends Component {
           </ScrollView>
 
           <View>
-            <NextArrowButton handleNextButton={this._handleNextButton} />
+            <NextArrowButton
+              style={styles.nextButton}
+              handleNextButton={this._handleNextButton}
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -64,7 +68,13 @@ const styles = StyleSheet.create({
   loginHeader: {
     fontSize: 34,
     color: colors.white,
-    fontWeight: "300"
+    fontWeight: "300",
+    marginBottom: 40
+  },
+  nextButton: {
+    alignItems: "flex-end",
+    right: 20,
+    bottom: 0
   }
 });
 
