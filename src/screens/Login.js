@@ -13,7 +13,7 @@ class Login extends Component {
   state = {};
   render() {
     return (
-      <KeyboardAvoidingView style={styles.root}>
+      <KeyboardAvoidingView style={styles.root} behavior="padding">
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scroll}>
             <Text style={styles.loginHeader}>Log In</Text>
@@ -33,12 +33,12 @@ class Login extends Component {
               textColor={colors.white}
               borderBottomColor={colors.white}
               inputType="password"
-              customStyles={{ marginBottom: 30 }}
+              customStyles={{ marginBottom: 10 }}
             />
           </ScrollView>
-        </View>
-        <View style={styles.nextButtonWrapper}>
-          <NextArrowButton handleNextButton={this._handleNextButton} />
+          <View style={styles.nextButtonWrapper}>
+            <NextArrowButton handleNextButton={this._handleNextButton} />
+          </View>
         </View>
       </KeyboardAvoidingView>
     );
