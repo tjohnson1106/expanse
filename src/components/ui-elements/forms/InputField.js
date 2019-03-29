@@ -1,10 +1,24 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, StyleSheet, TouchableHighlight } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 
 import colors from "../../../util/styles/colors";
 
 class InputField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      secureInput:
+        props.inputType === "text" || props.inputType === "email" ? false : true
+    };
+  }
+
+  toggleShowPassword() {
+    this.setState({
+      secureInput: !this.state.secureInput
+    });
+  }
+
   render() {
     const {
       labelText,
@@ -15,6 +29,7 @@ class InputField extends Component {
       inputType,
       customStyle
     } = this.props;
+    const { secureInput } = this.state;
 
     const fontSize = labelTextSize || 14;
     const color = labelColor || colors.white;
@@ -24,6 +39,11 @@ class InputField extends Component {
     return (
       <View style={[customStyle, styles.root]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
+        {inputType === "password" ? (
+          <TouchableOpacity>
+            <Text>{secureInput ? "Show" : "Hide"}</Text>
+          </TouchableOpacity>
+        ) : null}
         <TextInput
           autoCorrect={false}
           style={[{ color: inputColor, borderBottomColor: borderBottom }, styles.input]}
