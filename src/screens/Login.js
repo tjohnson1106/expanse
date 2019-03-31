@@ -42,6 +42,7 @@ class Login extends Component {
           </View>
           <View>
             <Notification
+              showNotification={true}
               type="Error"
               firstLine="Those credentials are incorrect."
               secondLine="Please try again."

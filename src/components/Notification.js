@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 
 import colors from "../util/styles/colors";
 
 class Notification extends Component {
-  state = {};
+  // trigger prop method
+  closeNotification() {
+    this.props.handleCloseNotification;
+  }
+
   render() {
     const { type, firstLine, secondLine } = this.props;
     return (
@@ -15,15 +20,20 @@ class Notification extends Component {
           <Text style={styles.errorMessage}>{firstLine}</Text>
           <Text style={styles.errorMessage}>{secondLine}</Text>
         </View>
+        <TouchableOpacity style={styles.closeButton} onPress={this.closeNotification}>
+          <MaterialCommunityIcons name="close" size={20} color={colors.lightGray} />
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 Notification.propTypes = {
-  type: PropTypes.string,
+  showNotification: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
   firstLine: PropTypes.string,
-  secondLine: PropTypes.string
+  secondLine: PropTypes.string,
+  handleCloseNotification: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -47,6 +57,10 @@ const styles = StyleSheet.create({
   errorMessage: {
     marginBottom: 2,
     fontSize: 14
+  },
+  closeButton: {
+    position: "absolute",
+    right: 10
   }
 });
 
