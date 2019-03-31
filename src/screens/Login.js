@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-
 
 import InputField from "../components/ui-elements/forms/InputField";
 import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
+import Notification from "../components/Notification";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
@@ -38,6 +39,13 @@ class Login extends Component {
           </ScrollView>
           <View style={styles.nextButtonWrapper}>
             <NextArrowButton handleNextButton={this.handleNextButton} />
+          </View>
+          <View>
+            <Notification
+              type="Error"
+              firstLine="Those credentials are incorrect."
+              secondLine="Please try again."
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
