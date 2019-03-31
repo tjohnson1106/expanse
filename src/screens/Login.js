@@ -8,23 +8,29 @@ import colors from "../util/styles/colors";
 
 class Login extends Component {
   state = {
-    formValid: false
+    formValid: true
   };
 
-  handleNextButton() {
+  handleNextButton = () => {
     alert("handle next button");
-  }
+  };
 
-  handleCloseNotification() {
-    alert("handle close notification");
-  }
+  handleCloseNotification = () => {
+    this.setState({
+      formValid: true
+    });
+  };
 
   render() {
     const { formValid } = this.state;
     const showNotification = formValid ? false : true;
+    const background = formValid ? colors.aqua : colors.darkOrange;
 
     return (
-      <KeyboardAvoidingView style={styles.root} behavior="padding">
+      <KeyboardAvoidingView
+        style={[{ backgroundColor: background }, styles.root]}
+        behavior="padding"
+      >
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scroll}>
             <Text style={styles.loginHeader}>Log In</Text>
@@ -68,8 +74,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   root: {
     display: "flex",
-    flex: 1,
-    backgroundColor: colors.aqua
+    flex: 1
   },
   scrollViewWrapper: {
     marginTop: 70,
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
   nextButtonWrapper: {
     alignItems: "flex-end",
     right: 20,
-    bottom: 10
+    bottom: 20
   }
 });
 
