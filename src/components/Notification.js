@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Animated, { Easing } from "react-native-reanimated";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from "react-native";
+// import Animated, { Easing } from "react-native-reanimated";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 
 import colors from "../util/styles/colors";
+
+// 03312019 reanimated library wasn't working, no variation in code
 
 class Notification extends Component {
   state = {
@@ -20,7 +22,7 @@ class Notification extends Component {
       tension: 2,
       friction: 8,
       easing: Easing.easeOutBack
-    });
+    }).start();
   };
 
   // method triggered in Login -> handleCloseNotification
@@ -30,8 +32,10 @@ class Notification extends Component {
 
   render() {
     const { type, firstLine, secondLine, showNotification } = this.props;
-    const { positionValue } = this.state;
+    // conditional implementation in props
     showNotification ? this.animateShowNotification(0) : this.animateShowNotification(60);
+    const { positionValue } = this.state;
+
     return (
       <Animated.View
         style={[

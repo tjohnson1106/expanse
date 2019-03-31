@@ -20,6 +20,9 @@ class Login extends Component {
   }
 
   render() {
+    const { formValid } = this.state;
+    const showNotification = formValid ? false : true;
+
     return (
       <KeyboardAvoidingView style={styles.root} behavior="padding">
         <View style={styles.scrollViewWrapper}>
@@ -47,9 +50,9 @@ class Login extends Component {
           <View style={styles.nextButtonWrapper}>
             <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
-          <View>
+          <View style={showNotification ? { marginTop: 10 } : {}}>
             <Notification
-              showNotification={true}
+              showNotification={showNotification}
               handleCloseNotification={this.handleCloseNotification}
               type="Error"
               firstLine="Those credentials are incorrect."
