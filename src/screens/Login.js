@@ -7,11 +7,18 @@ import Notification from "../components/Notification";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
+  state = {
+    formValid: false
+  };
+
   handleNextButton() {
     alert("handle next button");
   }
 
-  state = {};
+  handleCloseNotification() {
+    alert("handle close notification");
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.root} behavior="padding">
@@ -43,6 +50,7 @@ class Login extends Component {
           <View>
             <Notification
               showNotification={true}
+              handleCloseNotification={this.handleCloseNotification}
               type="Error"
               firstLine="Those credentials are incorrect."
               secondLine="Please try again."

@@ -3,5 +3,5 @@ export default {
   white: "#ffffff",
   aqua: "#005D7D",
   darkOrange: "#FF3D2E",
-  lightGray: "#d8d8d8"
+  lightGray: "#707070"
 };

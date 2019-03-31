@@ -1,20 +1,50 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import Animated, { Easing } from "react-native-reanimated";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 
 import colors from "../util/styles/colors";
 
 class Notification extends Component {
-  // trigger prop method
-  closeNotification() {
-    this.props.handleCloseNotification;
-  }
+  state = {
+    positionValue: new Animated.Value(60)
+  };
+
+  animateShowNotification = (value) => {
+    const { positionValue } = this.state;
+    Animated.timing(positionValue, {
+      toValue: value,
+      duration: 400,
+      velocity: 3,
+      tension: 2,
+      friction: 8,
+      easing: Easing.easeOutBack
+    });
+  };
+
+  // method triggered in Login -> handleCloseNotification
+  closeNotification = () => {
+    this.props.handleCloseNotification();
+  };
 
   render() {
-    const { type, firstLine, secondLine } = this.props;
+    const { type, firstLine, secondLine, showNotification } = this.props;
+    const { positionValue } = this.state;
+    showNotification ? this.animateShowNotification(0) : this.animateShowNotification(60);
     return (
-      <View style={styles.root}>
+      <Animated.View
+        style={[
+          {
+            transform: [
+              {
+                translateY: positionValue
+              }
+            ]
+          },
+          styles.root
+        ]}
+      >
         <View style={styles.notificationContent}>
           <Text style={styles.errorText}>{type}</Text>
           <Text style={styles.errorMessage}>{firstLine}</Text>
@@ -23,7 +53,7 @@ class Notification extends Component {
         <TouchableOpacity style={styles.closeButton} onPress={this.closeNotification}>
           <MaterialCommunityIcons name="close" size={20} color={colors.lightGray} />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     );
   }
 }
