@@ -6,7 +6,7 @@ import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
 import colors from "../util/styles/colors";
 
 class Login extends Component {
-  _handleNextButton() {
+  handleNextButton() {
     alert("handle next button");
   }
 
@@ -37,7 +37,7 @@ class Login extends Component {
             />
           </ScrollView>
           <View style={styles.nextButtonWrapper}>
-            <NextArrowButton handleNextButton={this._handleNextButton} />
+            <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
         </View>
       </KeyboardAvoidingView>

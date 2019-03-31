@@ -13,11 +13,12 @@ class InputField extends Component {
     };
   }
 
-  toggleShowPassword() {
+  // check for bind
+  toggleShowPassword = () => {
     this.setState({
       secureInput: !this.state.secureInput
     });
-  }
+  };
 
   render() {
     const {
@@ -40,14 +41,14 @@ class InputField extends Component {
       <View style={[customStyle, styles.root]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
         {inputType === "password" ? (
-          <TouchableOpacity>
-            <Text>{secureInput ? "Show" : "Hide"}</Text>
+          <TouchableOpacity style={styles.showButton} onPress={this.toggleShowPassword}>
+            <Text style={styles.showButtonText}>{secureInput ? "Show" : "Hide"}</Text>
           </TouchableOpacity>
         ) : null}
         <TextInput
           autoCorrect={false}
           style={[{ color: inputColor, borderBottomColor: borderBottom }, styles.input]}
-          secureTextEntry={inputType === "password"}
+          secureTextEntry={secureInput}
         />
       </View>
     );
@@ -76,6 +77,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingTop: 5,
     paddingBottom: 10
+  },
+  showButton: {
+    position: "absolute",
+    right: 0
+  },
+  showButtonText: {
+    color: colors.white,
+    fontWeight: "700"
   }
 });
 
