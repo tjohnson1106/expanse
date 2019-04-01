@@ -6,6 +6,8 @@ import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
 import Notification from "../components/Notification";
 import colors from "../util/styles/colors";
 
+// 04012019 look into performance issues -> arrow functions vs manual bind
+
 class Login extends Component {
   state = {
     formValid: false,
@@ -15,13 +17,42 @@ class Login extends Component {
   };
 
   handleNextButton = () => {
-    alert("handle next button");
+    if (this.state.emailAddress === "ex@ex.com") {
+      this.setState({
+        formValid: true
+      });
+    } else {
+      this.setState({
+        formValid: false
+      });
+    }
   };
 
   handleCloseNotification = () => {
     this.setState({
       formValid: true
     });
+  };
+
+  handleEmailChange = (email) => {
+    const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.setState({
+      emailAddress: email
+    });
+
+    if (!this.state.validEmail) {
+      if (emailCheckRegex.test(email)) {
+        this.setState({
+          validEmail: true
+        });
+      }
+    } else {
+      if (!emailCheckRegex.test(email)) {
+        this.setState({
+          validEmail: false
+        });
+      }
+    }
   };
 
   render() {
@@ -46,6 +77,7 @@ class Login extends Component {
               borderBottomColor={colors.white}
               inputType="email"
               customStyles={{ marginBottom: 30 }}
+              onChangeText={this.handleEmailChange}
             />
             <InputField
               labelText="PASSWORD"
