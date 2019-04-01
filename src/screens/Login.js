@@ -8,7 +8,10 @@ import colors from "../util/styles/colors";
 
 class Login extends Component {
   state = {
-    formValid: true
+    formValid: false,
+    validEmail: false,
+    emailAddress: "",
+    validPassword: false
   };
 
   handleNextButton = () => {
@@ -25,6 +28,7 @@ class Login extends Component {
     const { formValid } = this.state;
     const showNotification = formValid ? false : true;
     const background = formValid ? colors.aqua : colors.darkOrange;
+    const notificationMarginTop = showNotification ? 10 : 0;
 
     return (
       <KeyboardAvoidingView
@@ -56,7 +60,9 @@ class Login extends Component {
           <View style={styles.nextButtonWrapper}>
             <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
-          <View style={showNotification ? { marginTop: 10 } : {}}>
+          <View
+            style={[styles.notificationWrapper, { marginTop: notificationMarginTop }]}
+          >
             <Notification
               showNotification={showNotification}
               handleCloseNotification={this.handleCloseNotification}
@@ -96,6 +102,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     right: 20,
     bottom: 20
+  },
+  notificationWrapper: {
+    position: "absolute",
+    bottom: 0,
+    zIndex: 2
   }
 });
 
