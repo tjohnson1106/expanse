@@ -55,6 +55,21 @@ class Login extends Component {
     }
   };
 
+  handlePasswordChange = (password) => {
+    if (!this.state.validPassword) {
+      if (password.length > 4) {
+        // password minimum 4 characters
+        this.setState({
+          validPassword: true
+        });
+      }
+    } else if (password <= 4) {
+      this.setState({
+        validPassword: false
+      });
+    }
+  };
+
   render() {
     const { formValid } = this.state;
     const showNotification = formValid ? false : true;
