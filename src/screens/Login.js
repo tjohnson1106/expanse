@@ -70,6 +70,14 @@ class Login extends Component {
     }
   };
 
+  toggleNextButtonState = () => {
+    const { validEmail, validPassword } = this.state;
+    if ((validEmail, validPassword)) {
+      return false;
+    }
+    return true;
+  };
+
   render() {
     const { formValid } = this.state;
     const showNotification = formValid ? false : true;
@@ -105,7 +113,10 @@ class Login extends Component {
             />
           </ScrollView>
           <View style={styles.nextButtonWrapper}>
-            <NextArrowButton handleNextButton={this.handleNextButton} />
+            <NextArrowButton
+              handleNextButton={this.handleNextButton}
+              disabled={this.toggleNextButtonState}
+            />
           </View>
           <View
             style={[styles.notificationWrapper, { marginTop: notificationMarginTop }]}
