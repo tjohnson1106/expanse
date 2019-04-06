@@ -47,7 +47,7 @@ class InputField extends Component {
           </TouchableOpacity>
         ) : null}
         <TextInput
-          autoCapitalize={false}
+          autoCapitalize="none"
           autoCorrect={false}
           style={[{ color: inputColor, borderBottomColor: borderBottom }, styles.input]}
           secureTextEntry={secureInput}

@@ -10,14 +10,15 @@ import colors from "../util/styles/colors";
 
 class Login extends Component {
   state = {
-    formValid: false,
+    formValid: true,
     validEmail: false,
     emailAddress: "",
     validPassword: false
   };
 
   handleNextButton = () => {
-    if (this.state.emailAddress === "ex@ex.com") {
+    if (this.state.emailAddress === "ex@ex.com" && this.state.validPassword) {
+      alert("success");
       this.setState({
         formValid: true
       });
@@ -75,6 +76,7 @@ class Login extends Component {
     if ((validEmail, validPassword)) {
       return false;
     }
+
     return true;
   };
 
@@ -110,6 +112,7 @@ class Login extends Component {
               borderBottomColor={colors.white}
               inputType="password"
               customStyles={{ marginBottom: 10 }}
+              onChangeText={this.handlePasswordChange}
             />
           </ScrollView>
           <View style={styles.nextButtonWrapper}>

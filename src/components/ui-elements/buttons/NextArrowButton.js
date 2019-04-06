@@ -10,6 +10,8 @@ class NextArrowButton extends Component {
   render() {
     const { disabled, handleNextButton } = this.props;
     const opacityStyle = disabled
+      ? 0.2
+      : 0.6
       ? {
           backgroundColor: "rgba(255, 255, 255, 0.2)"
         }
@@ -20,8 +22,9 @@ class NextArrowButton extends Component {
     return (
       <View>
         <TouchableHighlight
-          style={[opacityStyle, styles.button]}
+          style={[{ opacity: opacityStyle }, styles.button]}
           onPress={handleNextButton}
+          disabled={disabled}
         >
           <FontAwesome
             name="angle-right"
@@ -41,13 +44,13 @@ NextArrowButton.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  root: {},
   button: {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,
     width: 60,
-    height: 60
+    height: 60,
+    backgroundColor: colors.white
   },
   icon: {
     marginRight: -2,
