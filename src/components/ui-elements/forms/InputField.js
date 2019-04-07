@@ -28,7 +28,8 @@ class InputField extends Component {
       textColor,
       borderBottomColor,
       inputType,
-      customStyle
+      customStyle,
+      onChangeText
     } = this.props;
     const { secureInput } = this.state;
 
@@ -46,9 +47,11 @@ class InputField extends Component {
           </TouchableOpacity>
         ) : null}
         <TextInput
+          autoCapitalize="none"
           autoCorrect={false}
           style={[{ color: inputColor, borderBottomColor: borderBottom }, styles.input]}
           secureTextEntry={secureInput}
+          onChangeText={onChangeText}
         />
       </View>
     );
@@ -62,7 +65,8 @@ InputField.propTypes = {
   textColor: PropTypes.string,
   borderBottomColor: PropTypes.string,
   inputType: PropTypes.string.isRequired,
-  customStyle: PropTypes.object
+  customStyle: PropTypes.object,
+  onChangeText: PropTypes.func
 };
 
 const styles = StyleSheet.create({
