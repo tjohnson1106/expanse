@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Modal, Image } from "react-native";
+import { View, StyleSheet, Modal, Image } from "react-native";
 import { PropTypes } from "prop-types";
 import colors from "../util/styles/colors";
 
@@ -10,7 +10,12 @@ class Loader extends Component {
     return (
       <Modal animationType={animationType} visible={visible} transparent={true}>
         <View style={styles.wrapper}>
-          <Text>Loader Modal</Text>
+          <View style={styles.loaderContainer}>
+            <Image
+              style={styles.loaderImage}
+              source={require("../img/green_loader.gif")}
+            />
+          </View>
         </View>
       </Modal>
     );
@@ -31,6 +36,22 @@ const styles = StyleSheet.create({
     height: "100%",
     top: 0,
     left: 0
+  },
+  loaderContainer: {
+    width: 90,
+    height: 90,
+    backgroundColor: colors.white,
+    borderRadius: 15,
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    marginLeft: -45,
+    marginTop: -45
+  },
+  loaderImage: {
+    width: 90,
+    height: 90,
+    borderRadius: 15
   }
 });
 
