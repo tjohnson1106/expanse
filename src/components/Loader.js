@@ -5,10 +5,10 @@ import colors from "../util/styles/colors";
 
 class Loader extends Component {
   render() {
-    const { animationType, visible } = this.props;
+    const { animationType, modalVisible } = this.props;
 
     return (
-      <Modal animationType={animationType} visible={visible} transparent={true}>
+      <Modal animationType={animationType} visible={false} transparent={true}>
         <View style={styles.wrapper}>
           <View style={styles.loaderContainer}>
             <Image
