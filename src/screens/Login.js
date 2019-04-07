@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-
 import InputField from "../components/ui-elements/forms/InputField";
 import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
 import Notification from "../components/Notification";
+import Loader from "../components/Loader";
+
 import colors from "../util/styles/colors";
 
 // 04012019 look into performance issues -> arrow functions vs manual bind
@@ -133,6 +135,7 @@ class Login extends Component {
             />
           </View>
         </View>
+        <Loader modalVisible={true} animationType="fade" />
       </KeyboardAvoidingView>
     );
   }
@@ -166,8 +169,7 @@ const styles = StyleSheet.create({
   },
   notificationWrapper: {
     position: "absolute",
-    bottom: 0,
-    zIndex: 2
+    bottom: 0
   }
 });
 
