@@ -9,22 +9,14 @@ class NextArrowButton extends Component {
   state = {};
   render() {
     const { disabled, handleNextButton } = this.props;
-    const opacityStyle = disabled
-      ? 0.2
-      : 0.6
-      ? {
-          backgroundColor: "rgba(255, 255, 255, 0.2)"
-        }
-      : {
-          backgroundColor: "rgba(255, 255, 255, 0.6)"
-        };
+    const opacityStyle = disabled ? 0.2 : 0.6;
 
     return (
       <View>
         <TouchableHighlight
           style={[{ opacity: opacityStyle }, styles.button]}
           onPress={handleNextButton}
-          disabled={disabled}
+          // disabled={}
         >
           <FontAwesome
             name="angle-right"
