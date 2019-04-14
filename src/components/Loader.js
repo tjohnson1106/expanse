@@ -8,7 +8,7 @@ class Loader extends Component {
     const { animationType, modalVisible } = this.props;
 
     return (
-      <Modal animationType={animationType} visible={false} transparent={true}>
+      <Modal animationType={animationType} visible={modalVisible} transparent={true}>
         <View style={styles.wrapper}>
           <View style={styles.loaderContainer}>
             <Image
