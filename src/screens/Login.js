@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-
 import InputField from "../components/ui-elements/forms/InputField";
 import NextArrowButton from "../components/ui-elements/buttons/NextArrowButton";
 import Notification from "../components/Notification";
+import Loader from "../components/Loader";
+
 import colors from "../util/styles/colors";
 
 // 04012019 look into performance issues -> arrow functions vs manual bind
@@ -13,20 +15,28 @@ class Login extends Component {
     formValid: true,
     validEmail: false,
     emailAddress: "",
-    validPassword: false
+    validPassword: false,
+    loadingVisible: false
   };
 
   handleNextButton = () => {
-    if (this.state.emailAddress === "ex@ex.com" && this.state.validPassword) {
-      alert("success");
-      this.setState({
-        formValid: true
-      });
-    } else {
-      this.setState({
-        formValid: false
-      });
-    }
+    // slow server simulation
+    this.setState({ loadingVisible: true });
+
+    setTimeout(() => {
+      if (this.state.emailAddress === "ex@ex.com" && this.state.validPassword) {
+        alert("success");
+        this.setState({
+          formValid: true,
+          loadingVisible: false
+        });
+      } else {
+        this.setState({
+          formValid: false,
+          loadingVisible: false
+        });
+      }
+    }, 2000);
   };
 
   handleCloseNotification = () => {
@@ -81,7 +91,7 @@ class Login extends Component {
   };
 
   render() {
-    const { formValid } = this.state;
+    const { formValid, loadingVisible } = this.state;
     const showNotification = formValid ? false : true;
     const background = formValid ? colors.aqua : colors.darkOrange;
     const notificationMarginTop = showNotification ? 10 : 0;
@@ -133,6 +143,7 @@ class Login extends Component {
             />
           </View>
         </View>
+        <Loader modalVisible={loadingVisible} animationType="fade" />
       </KeyboardAvoidingView>
     );
   }
@@ -166,8 +177,7 @@ const styles = StyleSheet.create({
   },
   notificationWrapper: {
     position: "absolute",
-    bottom: 0,
-    zIndex: 2
+    bottom: 0
   }
 });
 
