@@ -25,7 +25,6 @@ class Login extends Component {
 
     setTimeout(() => {
       if (this.state.emailAddress === "ex@ex.com" && this.state.validPassword) {
-        alert("success");
         this.setState({
           formValid: true,
           loadingVisible: false
@@ -91,7 +90,7 @@ class Login extends Component {
   };
 
   render() {
-    const { formValid, loadingVisible } = this.state;
+    const { formValid, loadingVisible, validEmail, validPassword } = this.state;
     const showNotification = formValid ? false : true;
     const background = formValid ? colors.aqua : colors.darkOrange;
     const notificationMarginTop = showNotification ? 10 : 0;
@@ -113,6 +112,8 @@ class Login extends Component {
               inputType="email"
               customStyles={{ marginBottom: 30 }}
               onChangeText={this.handleEmailChange}
+              showCheckmark={validEmail}
+              autoFocus={true}
             />
             <InputField
               labelText="PASSWORD"
@@ -123,6 +124,7 @@ class Login extends Component {
               inputType="password"
               customStyles={{ marginBottom: 10 }}
               onChangeText={this.handlePasswordChange}
+              showCheckmark={validPassword}
             />
           </ScrollView>
           <View style={styles.nextButtonWrapper}>
